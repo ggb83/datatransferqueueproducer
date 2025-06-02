@@ -37,6 +37,7 @@ public class Tests
     [Test]
     public async Task ExecuteSimple()
     {
+        
         var sqlConnectionString = serviceProvider.GetRequiredService<IConfiguration>().GetConnectionString("mssql");
         using var sqlConnection = new SqlConnection(sqlConnectionString);
         await sqlConnection.OpenAsync();
@@ -54,6 +55,13 @@ public class Tests
             GetItems.GetMockData(2000000),
             Options.Create(new ObjectProducerReaderSettings())
         );
+        if (rdr is IProducer producer)
+        {
+#pragma warning disable CS4014 // Kein warten wenn fertig dann fertig
+            producer.Produce(CancellationToken.None);
+#pragma warning restore CS4014 // 
+        }
+        
         await service.WriteToServerAsync(rdr);
 
     }

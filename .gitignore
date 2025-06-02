@@ -1,0 +1,6 @@
+/datatransferqueueproducer.test/obj/*
+/datatransferqueueproducer.test/bin/*
+/datatransferqueueproducer/obj/*
+/datatransferqueueproducer/bin/*
+/.*
+/*/appsettings.json
